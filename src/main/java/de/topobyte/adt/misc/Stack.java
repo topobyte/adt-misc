@@ -1,6 +1,8 @@
 package de.topobyte.adt.misc;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -11,7 +13,7 @@ import java.util.List;
  * @param <T>
  *            type of elements in the stack.
  */
-public class Stack<T>
+public class Stack<T> implements Iterable<T>
 {
 
 	private List<T> list = new ArrayList<>();
@@ -39,6 +41,25 @@ public class Stack<T>
 	public boolean isEmpty()
 	{
 		return list.isEmpty();
+	}
+
+	public int size()
+	{
+		return list.size();
+	}
+
+	/**
+	 * Returns an immutable list containing the elements in this stack.
+	 */
+	public List<T> asList()
+	{
+		return Collections.unmodifiableList(list);
+	}
+
+	@Override
+	public Iterator<T> iterator()
+	{
+		return asList().iterator();
 	}
 
 }
